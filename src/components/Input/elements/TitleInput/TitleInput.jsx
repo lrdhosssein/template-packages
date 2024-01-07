@@ -6,7 +6,6 @@ import Loading from '../../../loading/loading';
 import { components } from 'react-select';
 import Creatable from 'react-select/creatable';
 import { addCommas, getTextWidth, removeNonNumeric } from '../../../../utils/pureFunctions';
-import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import tippy from 'tippy.js';
 import toLangDigits from '../../../../utils/toLangDigits';
@@ -18,12 +17,9 @@ const TitleInput = memo((props) => {
     const [pageIndex, setPageIndex] = useState(1);
     const [lock, setLock] = useState(true);
     const [addMode, setAddMode] = useState(false);
-    const [selfInheritedOkDrop, setSelfInheritedOkDrop] = useState(false);
     const [focus, setFocus] = useState(false);
     const [value, setValue] = useState('')
     const [clicked, setClicked] = useState(false)
-
-    const { bankCode, } = useSelector(state => state.simam);
 
     const parentRef = useRef(null)
     let noPopup = props.hasOwnProperty("noPopup") ? props.noPopup : true;
@@ -48,10 +44,9 @@ const TitleInput = memo((props) => {
         else {
             setAddMode(false)
             setLock(false)
-            if ((props.hasMore || props.items?.length > 0) && (bankCode !== props.config?.mainGroups?.toString())) {
+            if (props.hasMore || props.items?.length > 0) {
                 setDrop(true)
             }
-            setSelfInheritedOkDrop(false);
         }
         props.onEnter && props.onEnter(searchValue)
     }
@@ -73,8 +68,6 @@ const TitleInput = memo((props) => {
             switch (e.keyCode) {
                 case 112: //F1
                     e.preventDefault?.();
-                    if (bankCode === props.config?.mainGroups?.toString())
-                        setSelfInheritedOkDrop(!drop)
                     setDrop(!drop)
                     break;
                 case 115: //F4
@@ -83,8 +76,6 @@ const TitleInput = memo((props) => {
                     setAddMode(!addMode)
                     break;
                 case 27: //Escape
-                    if (bankCode === props.config?.mainGroups?.toString())
-                        setSelfInheritedOkDrop(false)
                     setDrop(false)
                     break;
                 case 32:
@@ -139,7 +130,7 @@ const TitleInput = memo((props) => {
             return;
         }
         let updatedItems = [];
-        if (props.permanentOpen && (bankCode !== props.config?.mainGroups?.toString() || selfInheritedOkDrop))
+        if (props.permanentOpen)
             setDrop(true)
         if (searchValue) {
             updatedItems = props.items.filter(item => `${item.text}`.includes(searchValue))
@@ -148,7 +139,7 @@ const TitleInput = memo((props) => {
             updatedItems = props.items
         }
         if (!drop && updatedItems?.length > 0 && props.inputEnteredKey?.split('_')[1] === props._id
-            && ((props.config?.mainGroups && bankCode !== props.config?.mainGroups?.toString()) || selfInheritedOkDrop || focus)) {
+            && (props.config?.mainGroups || focus)) {
             setDrop(true)
         }
         setFilterItems(updatedItems.map(item => {
@@ -168,7 +159,7 @@ const TitleInput = memo((props) => {
         }
         let updatedItems = [...props.items];
         if (!drop && updatedItems?.length > 0 && props.inputEnteredKey?.split('_')[1] === props._id
-            && ((props.config?.mainGroups && bankCode !== props.config?.mainGroups?.toString()) || selfInheritedOkDrop || focus)) {
+            && (props.config?.mainGroups || focus)) {
             if (clicked)
                 setClicked(false)
             else
@@ -198,8 +189,7 @@ const TitleInput = memo((props) => {
 
     useEffect(() => {
         if (!props.value && props.inputEnteredKey?.split('_')[1] === props._id) setSearchValue('')
-        if (props.backSearch && !props.value && props.items?.length > 0 && filterItems?.length > 0 && !drop && props.inputEnteredKey?.split('_')[1] === props._id
-            && ((bankCode !== props.config?.mainGroups?.toString()) || selfInheritedOkDrop))
+        if (props.backSearch && !props.value && props.items?.length > 0 && filterItems?.length > 0 && !drop && props.inputEnteredKey?.split('_')[1] === props._id)
             setDrop(true)
         if (props.value !== value)
             setValue(props.value)

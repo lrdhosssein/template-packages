@@ -18,11 +18,8 @@ import {
 import { IoDocumentAttach, IoVideocam } from "react-icons/io5";
 import Modal from "../../../Modal/Modal";
 import FileViewer from "../../../FileViewer/FileViewer";
-import { baseUrl } from "../../../../constants/Config";
-import { useSelector } from "react-redux";
 import FilePreview from "../../../FilePreview/FilePreview";
 import tippy from 'tippy.js';
-import { useLocation } from "react-router-dom";
 
 const FileInput = (props) => {
     const [focus, setFocus] = useState(false);
@@ -34,13 +31,6 @@ const FileInput = (props) => {
     const [fileColor, setFileColor] = useState(null);
     const [previewFile, setPreviewFile] = useState(null);
     const [openFile, setOpenFile] = useState(false);
-
-    const { selectedActiveBackup, } = useSelector((state) => state.simam);
-
-    const location = useLocation();
-
-    const searchParams = new URLSearchParams(location.search);
-    const backupId = searchParams.get("backup");
 
     const fileRef = useRef();
     const containerRef = useRef();
@@ -76,7 +66,7 @@ const FileInput = (props) => {
     }
 
     const inputClickHandler = () => {
-        if (props.elementConfig.readOnly || props.disabled) return;
+        if (props.elementConfig?.readOnly || props.disabled) return;
         if (fileDataURL)
             openFileHandler()
         else
@@ -156,13 +146,6 @@ const FileInput = (props) => {
     }
 
     useEffect(() => {
-        if (!props.value || props.value instanceof Object || !selectedActiveBackup) return;
-        const newUrl = `${baseUrl}uploads/data/${backupId || selectedActiveBackup}/${props.value}`
-        setFileDetails(props.value, newUrl)
-    }, [props.value, selectedActiveBackup])
-
-
-    useEffect(() => {
         if (!props.customHint) return;
         const instances = tippy('button', {
             animation: "scale",
@@ -211,7 +194,7 @@ const FileInput = (props) => {
                 style={{
                     width: props.size ? getTextWidth([...new Array(parseInt(props.size))].map(item => 'ک').join('')) : "100%",
                     padding: "0.2em calc(0.4em - 2px)",
-                    cursor: (!props.elementConfig.readOnly && !props.disabled && focus === 2) ? "pointer" : "default",
+                    cursor: (!props.elementConfig?.readOnly && !props.disabled && focus === 2) ? "pointer" : "default",
                     ...props.inputStyle,
                 }}
                 {...props.elementConfig}
@@ -224,14 +207,14 @@ const FileInput = (props) => {
                 onKeyDown={inputKeyDownHandler}
             >
                 {'ا'}
-                {(!focus || props.elementConfig.readOnly || props.disabled) && !fileDataURL && <p className="file-input-placeholder">{props.type}</p>}
+                {(!focus || props.elementConfig?.readOnly || props.disabled) && !fileDataURL && <p className="file-input-placeholder">{props.type}</p>}
                 {fileDataURL ?
                     <div className="file">
                         {fileType === "image" ?
                             <img src={fileDataURL} alt="" />
                             : fileIcon
                         }
-                        {focus > 0 && !openFile && !props.elementConfig.readOnly && !props.disabled && <Button
+                        {focus > 0 && !openFile && !props.elementConfig?.readOnly && !props.disabled && <Button
                             buttonType={buttonTypes.secondary}
                             style={{
                                 position: "absolute",
@@ -255,7 +238,7 @@ const FileInput = (props) => {
                         }
                     </div>
                     :
-                    !props.elementConfig.readOnly && !props.disabled &&
+                    !props.elementConfig?.readOnly && !props.disabled &&
                     <div className="add-file-button">
                         <VscFile className={`file-icon ${focus && 'show-file-icon'}`} />
                         <MdOutlineAdd className={`add-icon ${focus && 'show-add-icon'}`} />

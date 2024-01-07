@@ -217,3 +217,46 @@ export const editValueByType = (value, type) => {
         editedValue = editedValue.split(splitChar).join(', ');
     return editedValue;
 }
+
+export const checkValidaty = (value, rules) => {
+    let isValid = true;
+
+    if (!rules) {
+        return true;
+    }
+
+    if (rules.required) {
+        isValid = value?.toString().trim().length > 0 && isValid;
+        if (rules.isNumeric && value?.toString().trim().length > 0) {
+            isValid = parseInt(value) !== 0 && isValid;
+        }
+    }
+
+    if (rules.bdRequired) {
+        isValid = value && isValid;
+    }
+
+    if (rules.minLength) {
+        isValid = value.length >= rules.minLength && isValid;
+    }
+
+    if (rules.maxLength) {
+        isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if (rules.isEmail) {
+        const pattern =
+            /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        isValid = pattern.test(value) && isValid;
+    }
+
+    if (rules.isDate) {
+        const datePattern = /^([12]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01]))/;  // YYYY/MM/DD
+        isValid = datePattern.test(value) && isValid;
+    }
+
+    if (rules.isNumeric && value.length > 0) {
+        isValid = !isNaN(value) && isValid;
+    }
+    return isValid;
+};

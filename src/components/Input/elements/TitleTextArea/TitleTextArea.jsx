@@ -51,8 +51,7 @@ const TitleTextArea = (props) => {
                 )}
             </p>
             <textarea
-                className={`input-element ${(props.invalid && props.shouldValidate && props.touched) ? "invalid" : ""}
-                border border-solid bg-white focus:border-amber-500 border-gray-200`}
+                className={`input-element ${(props.invalid && props.shouldValidate && props.touched) ? "invalid" : ""}`}
                 {...props.elementConfig}
                 placeholder={t(props.placeholder)}
                 maxLength={props?.size ? props.elementConfig?.maxLength : "undefined"}
