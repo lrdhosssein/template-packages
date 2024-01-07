@@ -1,0 +1,130 @@
+.button-span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 250ms linear;
+}
+
+.half-padding {
+  padding: 0.25em 0.75em;
+}
+
+.small-padding {
+  padding: 0.1em 1em;
+}
+
+.med-padding {
+  padding: 0.25em 1.25em;
+}
+
+.button-loading {
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 60%;
+    aspect-ratio: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: var(--loading-color);
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  .button-children {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.small-gap-ver {
+  margin: 0.25rem 0;
+}
+
+.small-gap-hor {
+  margin: 0 0.25rem;
+}
+
+.med-gap-ver {
+  margin: 1rem 0;
+}
+.med-gap-hor {
+  margin: 0 1rem;
+}
+
+.fit-in {
+  width: 100%;
+  &.button-loading {
+    &::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      top: unset;
+      left: unset;
+      right: unset;
+      bottom: 0;
+      border: none;
+      background-color: var(--loading-color);
+      border-radius: 10px;
+      animation: button-loading-bar 2s cubic-bezier(0.17, 0.37, 0.43, 0.67)
+        infinite;
+      margin: 0;
+    }
+    .button-children {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.arrow-in-button-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: inherit;
+  color: inherit;
+  width: 25px;
+  height: 100%;
+  border-radius: 0;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  cursor: pointer;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes button-loading-bar {
+  0%,
+  100% {
+    width: 20%;
+  }
+
+  50% {
+    background-color: var(--loading-color);
+    width: 100%;
+  }
+}

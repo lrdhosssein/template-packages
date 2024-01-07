@@ -1,0 +1,101 @@
+.title-input-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+  .digit-seprated {
+    text-align: left;
+    direction: ltr;
+    font-size: 10px;
+    padding: 0 2px;
+    opacity: 0.8;
+    background-color: var(--border);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .title-class-name {
+    display: flex;
+    white-space: nowrap;
+    font-size: 14px;
+    min-width: fit-content;
+    max-width: 100%;
+  }
+  .category-title {
+    background-color: var(--secondary);
+    font-weight: 600;
+    padding: 2px 8px 0 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    .category-error-message {
+      margin: 0 2rem;
+      color: var(--error);
+      font-weight: 400;
+    }
+  }
+  .dropdown-input {
+    display: flex;
+    align-items: center;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    max-width: 100%;
+    line-height: 18px;
+    border-radius: 0.3em;
+    white-space: nowrap;
+    min-height: fit-content;
+    border-color: var(--border);
+    &:focus-within {
+      border-color: var(--primary);
+    }
+    .loading-spinner {
+      position: absolute;
+      left: 5px;
+      width: 15px;
+      height: 15px;
+    }
+    .right-loading {
+      left: auto;
+      right: 5px;
+    }
+  }
+  .invalid {
+    border: var(--error) 1px solid;
+    &:hover {
+      border: var(--error) 1px solid;
+    }
+  }
+}
+
+.list-option {
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  list-style: none;
+  transition: background-color 150ms ease-out;
+  .option-text {
+    display: flex;
+    align-items: center;
+    padding: 0.1em 0.5em;
+    padding-right: 0;
+    span {
+      padding-right: 0.3em;
+    }
+    .color-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--darken-border);
+      border-radius: 50%;
+    }
+  }
+  .option-second-text {
+    flex: 1;
+    // background-color: var(--hover);
+    opacity: 0.4;
+    text-align: left;
+  }
+}

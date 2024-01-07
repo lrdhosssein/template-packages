@@ -1,0 +1,51 @@
+$reminder-bar-back-color: var(--reminder-bar-back-color);
+$reminder-bar-on-back-color: white;
+$reminder-bar-on-back-font-color: black;
+$reminder-bar-counter-circle-color: #f65f7c;
+
+.reminder-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-small);
+  background-color: #{$reminder-bar-back-color};
+  color: #{$reminder-bar-on-back-color};
+  transition: all 0.2s ease;
+  font-size: 14px;
+  overflow: hidden;
+  z-index: 2000;
+  .icon-close {
+    position: absolute;
+    font-size: 17px;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+  .upgrade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 0;
+    font-size: 16px;
+    .days-counter {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #{$reminder-bar-counter-circle-color};
+      color: #{$reminder-bar-back-color};
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 22px;
+      margin: 0 5px;
+    }
+  }
+}

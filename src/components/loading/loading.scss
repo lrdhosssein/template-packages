@@ -1,0 +1,40 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  .loading-spinner {
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    border-top-color: var(--primary);
+    animation: spin 1.5s linear infinite;
+  }
+}
+.full-loading {
+  width: 100%;
+  height: 100%;
+  .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    border-right-color: var(--primary);
+    animation: l2 1s infinite linear;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
+  }
+}

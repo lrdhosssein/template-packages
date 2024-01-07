@@ -1,0 +1,26 @@
+.switch-input-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  .switch-input-title {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+}
+
+.switch-equal-checked .react-switch-bg {
+  background-color: var(--primary) !important;
+}
+
+.switch-equal-unchecked .react-switch-bg {
+  background-color: var(--secondary) !important;
+}
+
+.switch-input-checked .react-switch-bg {
+  background-color: var(--primary) !important;
+}
+
+.switch-input-unchecked .react-switch-bg {
+  background-color: var(--darken-border) !important;
+}

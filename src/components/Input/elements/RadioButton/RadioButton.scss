@@ -1,0 +1,57 @@
+/* The container */
+.container {
+  --label-font-size: min(max(0.8rem, 1.5vh), 1rem);
+  position: relative;
+  display: flex;
+  font-size: var(--label-font-size);
+  padding-right: 18px;
+  margin: 0 0.25rem;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* On mouse-over, add a grey background color */
+  &:hover input ~ .checkmark {
+    background-color: var(--hover);
+  }
+  /* Hide the browser's default radio button */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    /* When the radio button is checked, add primary background */
+    &:checked ~ .checkmark {
+      background-color: var(--primary);
+      /* Show the indicator (dot/circle) when checked */
+      &:after {
+        display: block;
+      }
+    }
+  }
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    height: 13px;
+    width: 13px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    &:after {
+      content: "";
+      display: none;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--surface);
+    }
+  }
+}

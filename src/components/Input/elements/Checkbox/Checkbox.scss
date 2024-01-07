@@ -1,0 +1,55 @@
+input[type="checkbox"] {
+  display: grid;
+  place-content: center;
+  -webkit-appearance: none; /* Add if not using autoprefixer */
+  appearance: none;
+  background-color: var(--surface); /* For iOS < 15 */
+  margin: 0 0.2em; /* Not removed via appearance */
+  color: curr;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid var(--border);
+  border-radius: 0.2em;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    transform: scale(0);
+    transition: 50ms transform ease-in-out;
+    box-shadow: inset 1em 1em white;
+    background-color: CanvasText; /* Windows High Contrast Mode */
+    transform-origin: bottom left;
+    clip-path: polygon(15% 45%, 0 65%, 40% 100%, 100% 20%, 84% 5%, 38% 70%);
+  }
+
+  &:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.05em var(--surface), 0 0 0.2em 0.1em var(--secondary);
+    outline: none;
+  }
+
+  &:disabled {
+    color: var(--darken-border);
+    cursor: default;
+  }
+}
+
+.checkbox-label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.label-disabled {
+  color: var(--darken-border);
+  cursor: default;
+}

@@ -1,0 +1,46 @@
+.opened-file-modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 95vw;
+  max-height: 95vh;
+  min-height: 500px;
+  overflow: hidden;
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    .file-details {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      .file-icon {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+      }
+      p {
+        white-space: nowrap;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .body-section {
+    display: flex;
+    justify-content: center;
+    background-color: var(--background);
+    padding: 0.5rem 0;
+    flex: 1;
+    height: 450px;
+    overflow: hidden;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: scale-down;
+    }
+    object {
+      height: 80vh;
+      width: 80vw;
+    }
+  }
+}

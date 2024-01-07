@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: IRANSans;
+  font-weight: 200;
+  src: url("./assets/fonts/iran-sans/woff2/IRANSansWeb(NoEn)_UltraLight.woff2")
+      format("woff2"),
+    url("./assets/fonts/iran-sans/woff/IRANSansWeb(NoEn)_UltraLight.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-weight: 300;
+  src: url("./assets/fonts/iran-sans/woff2/IRANSansWeb(NoEn)_Light.woff2")
+      format("woff2"),
+    url("./assets/fonts/iran-sans/woff/IRANSansWeb(NoEn)_Light.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-weight: 400;
+  src: url("./assets/fonts/iran-sans/woff2/IRANSansWeb(NoEn).woff2")
+      format("woff2"),
+    url("./assets/fonts/iran-sans/woff/IRANSansWeb(NoEn).woff") format("woff");
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-weight: 500;
+  src: url("./assets/fonts/iran-sans/woff2/IRANSansWeb(NoEn)_Medium.woff2")
+      format("woff2"),
+    url("./assets/fonts/iran-sans/woff/IRANSansWeb(NoEn)_Medium.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-weight: 700;
+  src: url("./assets/fonts/iran-sans/woff2/IRANSansWeb(NoEn)_Bold.woff2")
+      format("woff2"),
+    url("./assets/fonts/iran-sans/woff/IRANSansWeb(NoEn)_Bold.woff")
+      format("woff");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: IRANSans, system-ui, sans-serif;
+  user-select: none;
+}
+
+body {
+  direction: rtl;
+  overflow: hidden;
+  background-color: #fdfdfd;
+}
+
+:root {
+  --primary: #1e88e5;
+  --on-primary: white;
+  --secondary: #f2fafa;
+  --on-secondary: black;
+  --surface: white;
+  --on-surface: black;
+  --background: white;
+  --on-background: black;
+  --error: #b00020;
+  --success: #00ca72;
+  --info: #00b7ff;
+  --warning: #ffbb00;
+  --on-error: #ffffff;
+  --border: #0000001a;
+  --darken-border: #bec1c7;
+  --hover: rgba(0, 0, 0, 0.1);
+  --shadow: rgba(0, 0, 0, 0.1);
+  --soft-shadow: rgba(0, 0, 0, 0.035);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+@layer components {
+  .max-container {
+    max-width: 1281px;
+    margin: 0 auto;
+  }
+
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border 
+    max-sm:border-slate-gray max-sm:rounded-full;
+  }
+
+  .input-element,
+  .otp-input-element {
+    @apply border border-solid border-slate-200 hover:border-slate-400 focus:border-primary;
+  }
+
+  .menu-main {
+    @apply flex flex-col h-full w-full overflow-hidden select-none bg-gray-100 text-gray-800;
+    /* dark:bg-zinc-800 dark:text-white-400 */
+  }
+
+  .button-component {
+    @apply relative flex justify-center items-center gap-2 py-2 px-6 
+    border-none rounded-[50px] min-w-fit cursor-pointer overflow-hidden 
+    whitespace-nowrap transition text-base
+    active:scale-95;
+  }
+
+  .button-third {
+    @apply border border-solid border-gray-200;
+  }
+}
+
+@layer utilities {
+  .ltr {
+    direction: ltr;
+  }
+  .rtl {
+    direction: rtl;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .inline-flex-center {
+    @apply inline-flex items-center justify-center;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .border-top {
+    border-top: 1px solid var(--border);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 1px 6px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .line-bottom {
+    @apply after:content-[""] after:h-1 after:bg-black after:absolute after:bottom-0 after:left-0 after:right-0;
+  }
+
+  .h-full-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+::-webkit-scrollbar {
+  display: flex;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+*:hover::-webkit-scrollbar {
+  display: flex;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: gray;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+*[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+  filter: grayscale(10);
+  transform: scale(1);
+  box-shadow: 0 0 0 0;
+}
